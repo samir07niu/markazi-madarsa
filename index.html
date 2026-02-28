@@ -178,7 +178,7 @@
     <section id="about" data-aos="fade-up">
         <h2 class="section-title">Idara Ke Baare Mein</h2>
         <div class="about-text">
-            <strong>दारुल बेनत</strong> का क़याम इस ख़ास मक़सद से किया गया है ताकि हमारी बाचियाँ एक मुकम्मल इस्लामी, पर्दा-नशीं और महफ़ूज़ महफ़ूज़ में दीन की तालीम हासिल कर सकें। यहां बेहतरीन और ताजरबेकर आलिमत की निगरानी में हिफ़्ज़, नाज़िरा और दीनियत की तालीम दी जाती है।
+            <strong>दारुल बेनत</strong> का क़याम इस ख़ास मक़सद से किया गया है ताकि हमारी बचियाँ एक मुकम्मल इस्लामी, पर्दा-नशीं और महफ़ूज़ में दीन की तालीम हासिल कर सकें। यहां बेहतरीन और ताजरबेकर आलिमत की निगरानी में हिफ़्ज़, नाज़िरा और दीनियत की तालीम दी जाती है।
             
             <div class="hindi-quote">
                 <h3 style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 15px;">
@@ -282,6 +282,17 @@
             </div>
             <br>
             <button class="gold-btn" style="max-width: 400px;" onclick="sendWhatsApp('Assamualaikum, Maine abhi Madarsa ke account me Donation/Zakat bheja hai. Ye rahi receipt.')">Send Payment Screenshot on WhatsApp</button>
+        </div>
+    </section>
+    
+    <section id="admission" data-aos="fade-up">
+        <h2 class="section-title">Admission Enquiry</h2>
+        <div class="donate-box" style="max-width: 600px; padding: 30px;">
+            <p style="color: #aaa; margin-bottom: 20px;">Apni bachi ke admission ki details yahan bharein, hum aapse khud rabta karenge.</p>
+            <input type="text" id="s-name" class="admin-input" placeholder="Bachi ka Naam (Student Name)">
+            <input type="text" id="s-class" class="admin-input" placeholder="Kaunsi Class ya Course? (eg: 5th, DCA)">
+            <input type="text" id="s-phone" class="admin-input" placeholder="Aapka Mobile Number">
+            <button class="gold-btn" onclick="sendAdmission()">Submit Application</button>
         </div>
     </section>
 
@@ -410,6 +421,31 @@
             window.open(whatsappURL, '_blank');
         }
 
+        // ADMISSION FORM TO WHATSAPP SCRIPT
+        function sendAdmission() {
+            let name = document.getElementById('s-name').value;
+            let cls = document.getElementById('s-class').value;
+            let phone = document.getElementById('s-phone').value;
+            
+            // Checking if form is empty
+            if(name === "" || cls === "" || phone === "") {
+                alert("Bhai, pehle poora form toh bhariyen!");
+                return;
+            }
+            
+            // Creating Professional WhatsApp Message
+            let msg = `*New Admission Inquiry:*\n\n*Name:* ${name}\n*Class/Course:* ${cls}\n*Phone:* ${phone}\n\nAssalamualaikum, mujhe is admission ke baare me maloomat chahiye thi.`;
+            
+            // Chacha's Number
+            let whatsappURL = `https://wa.me/919199976654?text=${encodeURIComponent(msg)}`;
+            window.open(whatsappURL, '_blank');
+            
+            // Clearing form after sending
+            document.getElementById('s-name').value = "";
+            document.getElementById('s-class').value = "";
+            document.getElementById('s-phone').value = "";
+        }
+
         // --- Admin UI Toggles ---
         function openAdminLogin() { document.getElementById('admin-modal').style.display = 'flex'; }
         function closeAdminLogin() { document.getElementById('admin-modal').style.display = 'none'; }
@@ -527,6 +563,7 @@
     </script>
 </body>
 </html>
+
 
 
 
