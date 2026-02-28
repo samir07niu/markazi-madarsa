@@ -129,6 +129,13 @@
             .hindi-quote p { font-size: 0.95rem; text-align: left; text-align-last: left; }
             .dash-header { flex-direction: column; gap: 15px; text-align: center; }
         }
+        /* --- GOOGLE TRANSLATE VIP DESIGN --- */
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+        .goog-te-gadget { color: transparent !important; font-family: 'Poppins', sans-serif; }
+        .goog-te-gadget .goog-te-combo { color: #000; background: var(--gold); border: 2px solid #fff; border-radius: 5px; padding: 3px 5px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; outline: none; box-shadow: 0 0 10px rgba(212,175,55,0.5);}
+        #google_translate_element { margin-top: 2px; }
+        
     </style>
 </head>
 <body>
@@ -150,6 +157,7 @@
             <li><a href="#donate">Donate</a></li>
             <li><a href="#admission">Admission</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><div id="google_translate_element" title="Website ki Bhasha Badlein"></div></li>
         </ul>
     </nav>
 
@@ -662,8 +670,19 @@
             } else { alert("Bhai, khali notice thodi bhejenge! Pehle kuch likho."); }
         });
     </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'hi', // Hamari website Hindi/English mix hai
+                includedLanguages: 'ur,en,hi,ar', // Sirf Urdu, English, Hindi aur Arabic dikhayega
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
+
 
 
 
