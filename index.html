@@ -284,15 +284,41 @@
             <button class="gold-btn" onclick="sendAdmission()">Generate Admission Card</button>
         </div>
         
-        <div id="poster-template" style="display:none; width: 350px; padding: 20px; background: linear-gradient(135deg, #012111, #084224); color: white; border: 3px solid #D4AF37; border-radius: 15px; text-align: center; font-family: 'Poppins', sans-serif; position: absolute; z-index: -100;">
-            <h2 style="color: #D4AF37; margin-bottom: 10px; font-family: 'Aref Ruqaa', serif; font-size: 1.8rem;">Darul Benat Admission</h2>
-            <hr style="border-color: #D4AF37; margin-bottom: 15px;">
-            <h3 style="margin-bottom: 5px; font-size: 1.2rem;">Name: <span id="p-name" style="color: #f3e5ab;"></span></h3>
-            <p style="margin-bottom: 5px;">Course/Class: <span id="p-class" style="color: #f3e5ab; font-weight: bold;"></span></p>
-            <p style="margin-bottom: 15px;">Phone: <span id="p-phone" style="color: #f3e5ab;"></span></p>
-            <p style="font-size: 0.8rem; color: #aaa; border-top: 1px dashed #D4AF37; padding-top: 10px;">Authorized Digital Receipt</p>
+        <div id="poster-template" style="display:none; width: 400px; padding: 0; background: linear-gradient(135deg, #01140a, #04381e); color: white; border: 2px solid #D4AF37; border-radius: 15px; text-align: left; font-family: 'Poppins', sans-serif; position: absolute; z-index: -100; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.8);">
+            
+            <i class="fa-solid fa-book-quran" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 15rem; color: rgba(212, 175, 55, 0.05); z-index: 0;"></i>
+            
+            <div style="background: rgba(212, 175, 55, 0.1); border-bottom: 2px solid #D4AF37; padding: 20px; text-align: center; position: relative; z-index: 1;">
+                <h2 style="color: #D4AF37; margin: 0; font-family: 'Aref Ruqaa', serif; font-size: 2.2rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);">Darul Benat</h2>
+                <p style="color: #f3e5ab; font-size: 0.85rem; letter-spacing: 2px; margin: 0; text-transform: uppercase;">Official Admission Pass</p>
+            </div>
+            
+            <div style="padding: 25px 30px; position: relative; z-index: 1;">
+                <div style="margin-bottom: 15px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 5px;">
+                    <span style="color: #aaa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Student Name</span><br>
+                    <span id="p-name" style="color: #fff; font-size: 1.5rem; font-weight: 600; text-transform: uppercase;"></span>
+                </div>
+                
+                <div style="margin-bottom: 15px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 5px;">
+                    <span style="color: #aaa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Course / Class</span><br>
+                    <span id="p-class" style="color: #D4AF37; font-size: 1.2rem; font-weight: bold;"></span>
+                </div>
+                
+                <div style="margin-bottom: 10px;">
+                    <span style="color: #aaa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Registered Mobile</span><br>
+                    <span id="p-phone" style="color: #fff; font-size: 1.1rem; letter-spacing: 1px;"></span>
+                </div>
+            </div>
+            
+            <div style="background: #01140a; border-top: 1px solid #D4AF37; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1;">
+                <div>
+                    <p style="font-size: 0.7rem; color: #aaa; margin: 0; text-transform: uppercase;">Authorized By</p>
+                    <p style="font-family: 'Aref Ruqaa', serif; color: #D4AF37; font-size: 1.3rem; margin: 0;">Sameer Raza</p>
+                </div>
+                <div style="font-size: 2.5rem; color: #D4AF37; letter-spacing: -2px; font-weight: 300;">||| | || | |||</div>
+            </div>
         </div>
-
+        
         <div id="generated-poster-container" style="text-align: center; margin-top: 20px; display: none; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 15px;">
             <p style="color: #25D366; font-weight: bold; margin-bottom: 10px;">✅ Card Generated! Is photo ko download karke WhatsApp par bhejein.</p>
             <img id="final-poster-img" src="" style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(212,175,55,0.5); margin-bottom: 15px;">
@@ -564,3 +590,4 @@
     </script>
 </body>
 </html>
+
