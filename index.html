@@ -401,6 +401,7 @@
 
     <script>
         AOS.init({ duration: 1000, once: true });
+        
 
         particlesJS("particles-js", {
             "particles": {
@@ -446,6 +447,22 @@
             document.getElementById('s-phone').value = "";
         }
 
+        <div id="poster-template" style="display:none; width: 350px; padding: 20px; background: linear-gradient(135deg, #012111, #084224); color: white; border: 3px solid #D4AF37; border-radius: 15px; text-align: center; font-family: 'Poppins', sans-serif; position: absolute; z-index: -100;">
+        <h2 style="color: #D4AF37; margin-bottom: 10px; font-family: 'Aref Ruqaa', serif; font-size: 1.8rem;">Darul Benat Admission</h2>
+        <hr style="border-color: #D4AF37; margin-bottom: 15px;">
+        <h3 style="margin-bottom: 5px; font-size: 1.2rem;">Name: <span id="p-name" style="color: #f3e5ab;"></span></h3>
+        <p style="margin-bottom: 5px;">Course/Class: <span id="p-class" style="color: #f3e5ab; font-weight: bold;"></span></p>
+        <p style="margin-bottom: 15px;">Phone: <span id="p-phone" style="color: #f3e5ab;"></span></p>
+        <p style="font-size: 0.8rem; color: #aaa; border-top: 1px dashed #D4AF37; padding-top: 10px;">Authorized Digital Receipt</p>
+    </div>
+
+    <div id="generated-poster-container" style="text-align: center; margin-top: 20px; display: none;">
+        <p style="color: #25D366; font-weight: bold; margin-bottom: 10px;">✅ Card Generated! Is photo ko download karke WhatsApp par bhejein.</p>
+        <img id="final-poster-img" src="" style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(212,175,55,0.5); margin-bottom: 15px;">
+        <br>
+        <a id="download-btn" href="" download="Admission-Receipt.png" class="gold-btn" style="background: #25D366; color: white;">Download & Share Card</a>
+    </div>
+
         // --- Admin UI Toggles ---
         function openAdminLogin() { document.getElementById('admin-modal').style.display = 'flex'; }
         function closeAdminLogin() { document.getElementById('admin-modal').style.display = 'none'; }
@@ -470,6 +487,9 @@
             alert("InshaAllah! Ye feature jald hi aane wale updates me Firebase ke sath connect kiya jayega. Abhi sirf 'Update Notice Board' live hai.");
         }
     </script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -563,6 +583,7 @@
     </script>
 </body>
 </html>
+
 
 
 
