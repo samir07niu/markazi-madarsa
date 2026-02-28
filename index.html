@@ -135,6 +135,22 @@
         .goog-te-gadget { color: transparent !important; font-family: 'Poppins', sans-serif; }
         .goog-te-gadget .goog-te-combo { color: #000; background: var(--gold); border: 2px solid #fff; border-radius: 5px; padding: 3px 5px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; outline: none; box-shadow: 0 0 10px rgba(212,175,55,0.5);}
         #google_translate_element { margin-top: 2px; }
+
+        /* --- FATEMA AI CHATBOT CSS --- */
+        .chat-bot-btn { position: fixed; bottom: 100px; right: 30px; background: var(--gold); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); z-index: 1000; cursor: pointer; transition: 0.3s; }
+        .chat-bot-btn:hover { transform: scale(1.1); }
+        .chat-window { display: none; position: fixed; bottom: 170px; right: 30px; width: 320px; background: #01140a; border: 2px solid var(--gold); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 1000; overflow: hidden; font-family: 'Poppins', sans-serif; flex-direction: column; }
+        .chat-header { background: linear-gradient(135deg, #012111, #084224); color: var(--gold); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold); }
+        .chat-header h3 { margin: 0; font-size: 1.1rem; font-family: 'Aref Ruqaa', serif; letter-spacing: 1px; }
+        .close-chat { cursor: pointer; color: #fff; font-size: 1.2rem; }
+        .chat-body { height: 300px; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.5); }
+        .chat-msg { max-width: 85%; padding: 10px 15px; border-radius: 15px; font-size: 0.9rem; line-height: 1.5; }
+        .bot-msg { background: #084224; color: #fff; align-self: flex-start; border-bottom-left-radius: 0; border: 1px solid rgba(212, 175, 55, 0.3); }
+        .user-msg { background: var(--gold); color: #000; align-self: flex-end; border-bottom-right-radius: 0; font-weight: 600; }
+        .chat-input-area { display: flex; padding: 10px; background: #01140a; border-top: 1px solid var(--gold); }
+        .chat-input-area input { flex: 1; padding: 10px; border: 1px solid var(--gold); border-radius: 20px; background: #111; color: #fff; outline: none; font-family: 'Poppins', sans-serif; }
+        .chat-input-area button { background: var(--gold); color: #000; border: none; width: 40px; height: 40px; border-radius: 50%; margin-left: 10px; cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
+        .chat-input-area button:hover { transform: scale(1.1); }
         
     </style>
 </head>
@@ -680,8 +696,84 @@
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div class="chat-bot-btn" onclick="toggleChat()" title="Fatema AI se baat karein">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3><i class="fa-solid fa-headset"></i> Fatema AI Assistant</h3>
+            <span class="close-chat" onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg bot-msg">Assalamualaikum! Main Fatema AI hu. Markazi Madarsa Darul Benat me aapka swagat hai. 🌙<br><br>Aap mujhse <b>Admission</b>, <b>Fee</b>, <b>Hostel</b>, ya <b>Location</b> ke baare me pooch sakte hain.</div>
+        </div>
+        
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Apna sawal likhein..." onkeypress="handleEnter(event)">
+            <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            let chat = document.getElementById('chatWindow');
+            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function handleEnter(e) {
+            if(e.key === 'Enter') sendMessage();
+        }
+
+        function sendMessage() {
+            let input = document.getElementById('userInput');
+            let text = input.value.trim();
+            if(text === "") return;
+
+            // User ka message screen par daalna
+            addMessage(text, 'user-msg');
+            input.value = "";
+
+            // AI sochne ki acting karega (0.6 second delay)
+            setTimeout(() => {
+                botReply(text.toLowerCase());
+            }, 600);
+        }
+
+        function addMessage(text, className) {
+            let chatBody = document.getElementById('chatBody');
+            let msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-msg ' + className;
+            msgDiv.innerHTML = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll down
+        }
+
+        // AI AUTOMATIC JAWAB (Auto Reply Logic)
+        function botReply(text) {
+            let reply = "Maaf kijiyega, main ek AI hu aur is baare me nahi janti. Kripya 'Admission', 'Fee', 'Hostel', ya 'Contact' likh kar puchein. Ya Chacha jaan ko direct call karein: +91 9199976654.";
+            
+            if(text.includes('admission') || text.includes('form') || text.includes('apply')) {
+                reply = "🎓 Admission abhi khule hain! Aap is website par 'Admission' section me ja kar form bhar sakte hain aur apna Royal Digital Pass bana sakte hain.";
+            } else if(text.includes('fee') || text.includes('paisa') || text.includes('kharcha')) {
+                reply = "💖 Madarsa ki fee aur yateem bachiyon ki kafalat ke liye aap upar 'Donate' section dekh sakte hain. Wahan Bank details aur QR code uplabdh hai.";
+            } else if(text.includes('hostel') || text.includes('rehna') || text.includes('room') || text.includes('qayamgah')) {
+                reply = "🏢 Ji haan! Bachiyon ke liye ekdum mehfooz aur parda-nashin hostel ki suvidha uplabdh hai, jahan khane aur rehne ka intezam hai.";
+            } else if(text.includes('address') || text.includes('location') || text.includes('kahan') || text.includes('gaon')) {
+                reply = "📍 Hamara Madarsa Shafiyabad, Gopalganj, Bihar me sthit hai. Aap Google Maps ke liye 'Contact' section me naksha (map) dekh sakte hain.";
+            } else if(text.includes('salam') || text.includes('assalamualaikum') || text.includes('hello') || text.includes('hi')) {
+                reply = "Walaikum Assalam Warahmatullah! Farmayiye, main Madarsa ki jankari me aapki kaise madad kar sakti hu?";
+            } else if(text.includes('sameer') || text.includes('sir')) {
+                reply = "😎 Sameer Raza is Madarsa aur Kaneez Fatema Institute ke Management head aur Sir hain. Unhone hi ye shandar website banayi hai!";
+            }
+
+            addMessage(reply, 'bot-msg');
+        }
+    </script>
 </body>
 </html>
+
 
 
 
