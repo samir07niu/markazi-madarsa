@@ -295,10 +295,10 @@
             <button class="gold-btn" onclick="sendAdmission()">Generate Royal Admission Pass</button>
         </div>
         
-        <div id="poster-template" style="display:none; width: 600px; background: linear-gradient(135deg, #021108 0%, #062415 100%); padding: 15px; position: absolute; z-index: -100;">
+        <div id="poster-template" style="width: 600px; background: linear-gradient(135deg, #021108 0%, #062415 100%); padding: 15px; position: absolute; left: -9999px; top: -9999px; z-index: -100;">
             <div style="border: 3px solid #D4AF37; outline: 1px solid #D4AF37; outline-offset: 6px; padding: 35px 30px; position: relative; overflow: hidden;">
                 
-                <i class="fa-solid fa-book-open-reader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 25rem; color: #FFD700; opacity: 0.03; z-index: 0;"></i>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 25rem; color: #FFD700; opacity: 0.03; z-index: 0; font-family: sans-serif;">☪</div>
 
                 <div style="text-align: center; position: relative; z-index: 1; border-bottom: 2px solid rgba(212, 175, 55, 0.3); padding-bottom: 20px; margin-bottom: 25px;">
                     <p style="font-family: 'Aref Ruqaa', serif; color: #D4AF37; font-size: 1.5rem; margin: 0; line-height: 1;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
@@ -347,6 +347,7 @@
                 </div>
             </div>
         </div>
+        
         
         <div id="generated-poster-container" style="text-align: center; margin-top: 20px; display: none; background: rgba(0,0,0,0.8); padding: 25px; border-radius: 15px; border: 1px solid #D4AF37;">
             <p style="color: #25D366; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">✅ Royal Pass Generated! Download karke WhatsApp par bhejein.</p>
@@ -483,15 +484,17 @@
         }
 
         // ==========================================
-        // ROYAL ADMISSION POSTER GENERATOR & CAPTCHA (FIXED)
+        // ROYAL ADMISSION POSTER GENERATOR (CRASH-FREE)
         // ==========================================
         function sendAdmission() {
+            // Button ko disable karne ke liye select karna
+            let btn = document.querySelector('.gold-btn[onclick="sendAdmission()"]');
+            
             let name = document.getElementById('s-name').value;
             let cls = document.getElementById('s-class').value;
             let phone = document.getElementById('s-phone').value;
             let age = document.getElementById('s-age').value;
             let village = document.getElementById('s-village').value;
-            // Email hata diya hai VIP look ke liye
             let captcha = document.getElementById('s-captcha').value;
             
             // 1. Basic Validation
@@ -500,47 +503,64 @@
                 return;
             }
 
-            // 2. ISLAMIC CAPTCHA VALIDATION
+            // 2. ISLAMIC CAPTCHA
             if(captcha !== "5") {
                 alert("❌ Anti-Bot Captcha Galat Hai!\nSahi Jawab: Ek din me 5 namazein farz hoti hain.");
                 return;
             }
+
+            // 3. Button ko "Generating..." me badalna taaki log double click na karein
+            btn.innerText = "⏳ Generating Pass... Please Wait";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
             
-            // 3. Data ko poster me dalna
+            // 4. Data ko poster me dalna
             document.getElementById('p-name').innerText = name;
             document.getElementById('p-class').innerText = cls;
             document.getElementById('p-age').innerText = age + " Years";
             document.getElementById('p-village').innerText = village;
             document.getElementById('p-phone').innerText = phone;
-            // Error ki wajah 'p-email' wali line thi, jo ab delete kar di gayi hai!
             
-            // Poster ko dikhana
             let poster = document.getElementById('poster-template');
-            poster.style.display = "block";
             
-            // 🚀 PRO TRICK: SCALE 3 lagane se photo 4K/HD quality me render hogi
-            html2canvas(poster, {
-                scale: 3, 
-                backgroundColor: "#021108",
-                useCORS: true
-            }).then(canvas => {
-                poster.style.display = "none"; // Wapas chhupa do
-                
-                let imgData = canvas.toDataURL("image/png");
-                
-                document.getElementById('final-poster-img').src = imgData;
-                document.getElementById('download-btn').href = imgData;
-                document.getElementById('generated-poster-container').style.display = "block";
-                
-                // Form clear karna
-                document.getElementById('s-name').value = "";
-                document.getElementById('s-class').value = "";
-                document.getElementById('s-phone').value = "";
-                document.getElementById('s-age').value = "";
-                document.getElementById('s-village').value = "";
-                document.getElementById('s-email').value = "";
-                document.getElementById('s-captcha').value = "";
-            });
+            // 5. Thoda Delay Dena (Taki browser font load kar le aur crash na ho)
+            setTimeout(() => {
+                html2canvas(poster, {
+                    scale: 3, // HD Quality
+                    backgroundColor: "#021108",
+                    useCORS: true,
+                    allowTaint: true
+                }).then(canvas => {
+                    let imgData = canvas.toDataURL("image/png");
+                    
+                    document.getElementById('final-poster-img').src = imgData;
+                    document.getElementById('download-btn').href = imgData;
+                    document.getElementById('generated-poster-container').style.display = "block";
+                    
+                    // Form clear karna
+                    document.getElementById('s-name').value = "";
+                    document.getElementById('s-class').value = "";
+                    document.getElementById('s-phone').value = "";
+                    document.getElementById('s-age').value = "";
+                    document.getElementById('s-village').value = "";
+                    document.getElementById('s-email').value = "";
+                    document.getElementById('s-captcha').value = "";
+
+                    // Button wapas normal karna
+                    btn.innerText = "Generate Royal Admission Pass";
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+
+                    // Photo par screen scroll kar dena automatically
+                    document.getElementById('generated-poster-container').scrollIntoView({ behavior: 'smooth' });
+                    
+                }).catch(err => {
+                    alert("⚠️ Error: Photo nahi ban payi. Browser support check karein.\n" + err);
+                    btn.innerText = "Generate Royal Admission Pass";
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+                });
+            }, 800); // 0.8 second ka break
         }
         
 
@@ -644,5 +664,6 @@
     </script>
 </body>
 </html>
+
 
 
