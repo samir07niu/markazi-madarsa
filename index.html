@@ -750,22 +750,43 @@
             chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll down
         }
 
-        // AI AUTOMATIC JAWAB (Auto Reply Logic)
+       // ==========================================
+        // ADVANCED AI SMART BRAIN (Auto Reply Logic)
+        // ==========================================
         function botReply(text) {
-            let reply = "Maaf kijiyega, main ek AI hu aur is baare me nahi janti. Kripya 'Admission', 'Fee', 'Hostel', ya 'Contact' likh kar puchein. Ya Chacha jaan ko direct call karein: +91 9199976654.";
+            // Text ko chota karna aur faaltu spaces hatana taaki AI asani se padh sake
+            text = text.toLowerCase().trim();
             
-            if(text.includes('admission') || text.includes('form') || text.includes('apply')) {
+            // Default Reply (Agar kuch bilkul hi ajeeb type kar diya)
+            let reply = "Maaf kijiyega, main abhi seekh rahi hu. 😅 Kripya apne sawal ko thoda aur saaf likhein, jaise 'Admission kaise hoga?', 'Fee kitni hai?', ya 'Contact number do'. Ya direct call karein: +91 9199976654.";
+            
+            // 1. Contact / Number / Baat karni hai
+            if(text.match(/(contact|call|number|phone|mobile|rabta|baat|whatsapp|bat|nambar)/)) {
+                reply = "📞 Aap seedha is number par call ya WhatsApp kar sakte hain: +91 9199976654 (Management & Info).";
+            } 
+            // 2. Admission / Form / Dakhila
+            else if(text.match(/(admission|admision|admsn|form|apply|dakhila|join|naam likhana|addmission)/)) {
                 reply = "🎓 Admission abhi khule hain! Aap is website par 'Admission' section me ja kar form bhar sakte hain aur apna Royal Digital Pass bana sakte hain.";
-            } else if(text.includes('fee') || text.includes('paisa') || text.includes('kharcha')) {
-                reply = "💖 Madarsa ki fee aur yateem bachiyon ki kafalat ke liye aap upar 'Donate' section dekh sakte hain. Wahan Bank details aur QR code uplabdh hai.";
-            } else if(text.includes('hostel') || text.includes('rehna') || text.includes('room') || text.includes('qayamgah')) {
-                reply = "🏢 Ji haan! Bachiyon ke liye ekdum mehfooz aur parda-nashin hostel ki suvidha uplabdh hai, jahan khane aur rehne ka intezam hai.";
-            } else if(text.includes('address') || text.includes('location') || text.includes('kahan') || text.includes('gaon')) {
-                reply = "📍 Hamara Madarsa Shafiyabad, Gopalganj, Bihar me sthit hai. Aap Google Maps ke liye 'Contact' section me naksha (map) dekh sakte hain.";
-            } else if(text.includes('salam') || text.includes('assalamualaikum') || text.includes('hello') || text.includes('hi')) {
-                reply = "Walaikum Assalam Warahmatullah! Farmayiye, main Madarsa ki jankari me aapki kaise madad kar sakti hu?";
-            } else if(text.includes('sameer') || text.includes('sir')) {
-                reply = "😎 Sameer Raza is Madarsa aur Kaneez Fatema Institute ke Management head aur Sir hain. Unhone hi ye shandar website banayi hai!";
+            } 
+            // 3. Fee / Paisa / Kharcha
+            else if(text.match(/(fee|fees|fi|fess|paisa|paise|kharcha|rupiya|amount|cost|chanda|zakat)/)) {
+                reply = "💖 Madarsa ki fee aur yateem bachiyon ki kafalat ke liye aap upar 'Donate' section dekh sakte hain. Wahan Bank details aur QR code dono diye gaye hain.";
+            } 
+            // 4. Hostel / Rehna / PG
+            else if(text.match(/(hostel|rehna|room|qayamgah|pg|hstl|bed|rukna|stay|rahna)/)) {
+                reply = "🏢 Ji haan! Bachiyon ke liye ekdum mehfooz aur parda-nashin hostel ki suvidha hai. Wahan khane aur rehne ka behtareen intezam hai.";
+            } 
+            // 5. Location / Address / Map
+            else if(text.match(/(address|location|kahan|gaon|map|jagah|kidhar|pata|city|kaha)/)) {
+                reply = "📍 Hamara Madarsa Shafiyabad, Gopalganj, Bihar me sthit hai. Website ke 'Contact' section me Google Map lagaya gaya hai, aap wahan dekh sakte hain.";
+            } 
+            // 6. Greetings / Salam
+            else if(text.match(/(salam|assalamualaikum|hello|hi|hey|kaise ho|kya haal)/)) {
+                reply = "Walaikum Assalam Warahmatullah! 🌙 Main bilkul theek hu. Farmayiye, main Madarsa ke baare me aapki kya madad kar sakti hu?";
+            } 
+            // 7. About Sameer / Developer
+            else if(text.match(/(sameer|samir|sir|owner|kisne banaya|creator|admin|developer)/)) {
+                reply = "😎 Sameer Raza is Madarsa ke Management head aur Sir hain. Ye shandar website unhone hi design aur develop ki hai!";
             }
 
             addMessage(reply, 'bot-msg');
@@ -773,6 +794,7 @@
     </script>
 </body>
 </html>
+
 
 
 
