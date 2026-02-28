@@ -483,7 +483,7 @@
         }
 
         // ==========================================
-        // ROYAL ADMISSION POSTER GENERATOR & CAPTCHA
+        // ROYAL ADMISSION POSTER GENERATOR & CAPTCHA (FIXED)
         // ==========================================
         function sendAdmission() {
             let name = document.getElementById('s-name').value;
@@ -491,7 +491,7 @@
             let phone = document.getElementById('s-phone').value;
             let age = document.getElementById('s-age').value;
             let village = document.getElementById('s-village').value;
-            let email = document.getElementById('s-email').value || "Not Provided";
+            // Email hata diya hai VIP look ke liye
             let captcha = document.getElementById('s-captcha').value;
             
             // 1. Basic Validation
@@ -512,7 +512,7 @@
             document.getElementById('p-age').innerText = age + " Years";
             document.getElementById('p-village').innerText = village;
             document.getElementById('p-phone').innerText = phone;
-            document.getElementById('p-email').innerText = email;
+            // Error ki wajah 'p-email' wali line thi, jo ab delete kar di gayi hai!
             
             // Poster ko dikhana
             let poster = document.getElementById('poster-template');
@@ -542,6 +542,7 @@
                 document.getElementById('s-captcha').value = "";
             });
         }
+        
 
         // --- Admin UI Toggles ---
         function openAdminLogin() { document.getElementById('admin-modal').style.display = 'flex'; }
@@ -643,4 +644,5 @@
     </script>
 </body>
 </html>
+
 
