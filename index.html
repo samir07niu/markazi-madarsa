@@ -30,20 +30,17 @@
 
         .marquee-bar { background: var(--gold); padding: 8px 0; color: #000; font-weight: 600; letter-spacing: 1px; font-size: 0.95rem; position: relative; z-index: 100;}
 
-        /* --- NAVIGATION BAR --- */
         nav { background: rgba(1, 33, 17, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--gold); padding: 15px 20px; display: flex; justify-content: center; }
         .nav-links { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;}
         .nav-links li a { color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; transition: 0.3s; padding: 5px 10px; border-radius: 5px;}
         .nav-links li a:hover { color: var(--primary-green); background: var(--gold); }
 
-        /* Header / Hero Section */
         header { text-align: center; padding: 60px 20px 40px; position: relative; }
         .bismillah { font-family: 'Aref Ruqaa', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
         header h1 { font-family: 'Aref Ruqaa', serif; font-size: 3rem; color: #fff; margin-bottom: 10px; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); line-height: 1.3;}
         .subtitle { font-size: 1.2rem; color: var(--light-gold); font-weight: 400; margin-bottom: 25px; }
         .location-badge { display: inline-block; padding: 8px 25px; border: 1px solid var(--gold); border-radius: 30px; color: var(--gold); font-size: 0.9rem; background: rgba(212, 175, 55, 0.1); margin-bottom: 20px;}
 
-        /* Sections Common */
         section { padding: 60px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); background: rgba(0,0,0,0.2); }
         .section-title { text-align: center; font-family: 'Aref Ruqaa', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 40px; }
         
@@ -62,24 +59,20 @@
         .gold-btn { display: inline-block; background: linear-gradient(45deg, #B8860B, #FFD700, #B8860B); color: #000; padding: 10px 25px; font-weight: 600; border-radius: 25px; text-decoration: none; transition: 0.3s; border: none; cursor: pointer; width: 100%; font-family: 'Poppins', sans-serif;}
         .gold-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.6); }
 
-        /* POSTERS SECTION (Institutes) */
         .poster-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto; }
         .poster-card { background: rgba(0, 0, 0, 0.5); border-radius: 15px; padding: 15px; width: 100%; max-width: 450px; text-align: center; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.8); transition: 0.3s; }
         .poster-card:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4); }
         .poster-card img { width: 100%; border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.2);}
         .poster-card h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.3rem; }
 
-        /* GALLERY GRID */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
         .gallery-item { background: #111; height: 350px; border-radius: 15px; border: 2px solid var(--gold); overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.5);}
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .gallery-item img:hover { transform: scale(1.1); }
 
-        /* Videos Section */
         .video-container { max-width: 800px; margin: 0 auto; border: 3px solid var(--gold); border-radius: 15px; overflow: hidden; box-shadow: 0 0 20px rgba(212,175,55,0.3);}
         .video-container iframe { width: 100%; height: 450px; border: none; }
 
-        /* Social Media Section */
         .social-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; max-width: 800px; margin: 0 auto; }
         .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 30px; border-radius: 30px; font-weight: 600; text-decoration: none; color: white; font-size: 1.1rem; transition: 0.3s; min-width: 250px; }
         .social-btn i { font-size: 1.5rem; }
@@ -90,11 +83,8 @@
         .yt-btn { background: #FF0000; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4); }
         .yt-btn:hover { background: #cc0000; transform: translateY(-5px); }
 
-        /* Donate & Contact Section */
         .donate-box { max-width: 850px; margin: 0 auto; background: rgba(255, 255, 255, 0.05); border: 2px dashed var(--gold); padding: 30px; border-radius: 15px; text-align: center; }
-        
         .donation-flex { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; align-items: center; background: rgba(0,0,0,0.6); padding: 30px; border-radius: 15px; margin-top: 20px; border: 1px solid rgba(212, 175, 55, 0.3); }
-        
         .qr-section { background: white; padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
         .qr-section img { width: 220px; height: 220px; object-fit: contain; }
         .qr-section p { color: #000; font-weight: bold; margin-top: 10px; font-size: 0.95rem; }
@@ -115,7 +105,6 @@
         .developer-footer { text-align: center; padding: 25px 15px; background: #01140a; color: #888; border-top: 1px solid rgba(212, 175, 55, 0.2); }
         .dev-name { color: var(--gold); font-weight: 600; text-decoration: none; cursor: pointer; }
         
-        /* --- PRO ISLAMIC ADMIN PANEL CSS --- */
         #admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; }
         .admin-box { background: var(--primary-green); border: 2px solid var(--gold); padding: 40px; border-radius: 15px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);}
         .admin-input { width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 5px; border: 1px solid var(--gold); background: #111; color: white; font-family: 'Poppins', sans-serif;}
@@ -123,7 +112,6 @@
         #admin-dashboard { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #011a0e; z-index: 10000; padding: 40px 20px; overflow-y: auto; }
         .dash-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed var(--gold); padding-bottom: 20px; margin-bottom: 30px; max-width: 1200px; margin-left: auto; margin-right: auto;}
         
-        /* Multi-Option Grid */
         .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
         .dash-card { background: rgba(0,0,0,0.5); border: 1px solid var(--gold); padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: 0.3s;}
         .dash-card:hover { transform: translateY(-5px); border-color: #fff; }
@@ -160,6 +148,7 @@
             <li><a href="#institutes">Institutes</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#donate">Donate</a></li>
+            <li><a href="#admission">Admission</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -284,15 +273,31 @@
             <button class="gold-btn" style="max-width: 400px;" onclick="sendWhatsApp('Assamualaikum, Maine abhi Madarsa ke account me Donation/Zakat bheja hai. Ye rahi receipt.')">Send Payment Screenshot on WhatsApp</button>
         </div>
     </section>
-    
+
     <section id="admission" data-aos="fade-up">
         <h2 class="section-title">Admission Enquiry</h2>
         <div class="donate-box" style="max-width: 600px; padding: 30px;">
-            <p style="color: #aaa; margin-bottom: 20px;">Apni bachi ke admission ki details yahan bharein, hum aapse khud rabta karenge.</p>
+            <p style="color: #aaa; margin-bottom: 20px;">Apni bachi ke admission ki details yahan bharein, ek Digital Card ban jayega jise aap aage bhej sakte hain.</p>
             <input type="text" id="s-name" class="admin-input" placeholder="Bachi ka Naam (Student Name)">
             <input type="text" id="s-class" class="admin-input" placeholder="Kaunsi Class ya Course? (eg: 5th, DCA)">
             <input type="text" id="s-phone" class="admin-input" placeholder="Aapka Mobile Number">
-            <button class="gold-btn" onclick="sendAdmission()">Submit Application</button>
+            <button class="gold-btn" onclick="sendAdmission()">Generate Admission Card</button>
+        </div>
+        
+        <div id="poster-template" style="display:none; width: 350px; padding: 20px; background: linear-gradient(135deg, #012111, #084224); color: white; border: 3px solid #D4AF37; border-radius: 15px; text-align: center; font-family: 'Poppins', sans-serif; position: absolute; z-index: -100;">
+            <h2 style="color: #D4AF37; margin-bottom: 10px; font-family: 'Aref Ruqaa', serif; font-size: 1.8rem;">Darul Benat Admission</h2>
+            <hr style="border-color: #D4AF37; margin-bottom: 15px;">
+            <h3 style="margin-bottom: 5px; font-size: 1.2rem;">Name: <span id="p-name" style="color: #f3e5ab;"></span></h3>
+            <p style="margin-bottom: 5px;">Course/Class: <span id="p-class" style="color: #f3e5ab; font-weight: bold;"></span></p>
+            <p style="margin-bottom: 15px;">Phone: <span id="p-phone" style="color: #f3e5ab;"></span></p>
+            <p style="font-size: 0.8rem; color: #aaa; border-top: 1px dashed #D4AF37; padding-top: 10px;">Authorized Digital Receipt</p>
+        </div>
+
+        <div id="generated-poster-container" style="text-align: center; margin-top: 20px; display: none; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 15px;">
+            <p style="color: #25D366; font-weight: bold; margin-bottom: 10px;">✅ Card Generated! Is photo ko download karke WhatsApp par bhejein.</p>
+            <img id="final-poster-img" src="" style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(212,175,55,0.5); margin-bottom: 15px;">
+            <br>
+            <a id="download-btn" href="" download="Admission-Receipt.png" class="gold-btn" style="background: #25D366; color: white; display: inline-block; max-width: 300px;">Download & Share Card</a>
         </div>
     </section>
 
@@ -398,10 +403,10 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
         AOS.init({ duration: 1000, once: true });
-        
 
         particlesJS("particles-js", {
             "particles": {
@@ -422,46 +427,42 @@
             window.open(whatsappURL, '_blank');
         }
 
-        // ADMISSION FORM TO WHATSAPP SCRIPT
+        // ADVANCED ADMISSION POSTER GENERATOR
         function sendAdmission() {
             let name = document.getElementById('s-name').value;
             let cls = document.getElementById('s-class').value;
             let phone = document.getElementById('s-phone').value;
             
-            // Checking if form is empty
             if(name === "" || cls === "" || phone === "") {
                 alert("Bhai, pehle poora form toh bhariyen!");
                 return;
             }
             
-            // Creating Professional WhatsApp Message
-            let msg = `*New Admission Inquiry:*\n\n*Name:* ${name}\n*Class/Course:* ${cls}\n*Phone:* ${phone}\n\nAssalamualaikum, mujhe is admission ke baare me maloomat chahiye thi.`;
+            // Data ko poster me dalna
+            document.getElementById('p-name').innerText = name;
+            document.getElementById('p-class').innerText = cls;
+            document.getElementById('p-phone').innerText = phone;
             
-            // Chacha's Number
-            let whatsappURL = `https://wa.me/919199976654?text=${encodeURIComponent(msg)}`;
-            window.open(whatsappURL, '_blank');
+            // Poster ko dikhana
+            let poster = document.getElementById('poster-template');
+            poster.style.display = "block";
             
-            // Clearing form after sending
-            document.getElementById('s-name').value = "";
-            document.getElementById('s-class').value = "";
-            document.getElementById('s-phone').value = "";
+            // Photo khichna
+            html2canvas(poster).then(canvas => {
+                poster.style.display = "none"; // Wapas chhupa do
+                
+                let imgData = canvas.toDataURL("image/png");
+                
+                document.getElementById('final-poster-img').src = imgData;
+                document.getElementById('download-btn').href = imgData;
+                document.getElementById('generated-poster-container').style.display = "block";
+                
+                // Form clear karna
+                document.getElementById('s-name').value = "";
+                document.getElementById('s-class').value = "";
+                document.getElementById('s-phone').value = "";
+            });
         }
-
-        <div id="poster-template" style="display:none; width: 350px; padding: 20px; background: linear-gradient(135deg, #012111, #084224); color: white; border: 3px solid #D4AF37; border-radius: 15px; text-align: center; font-family: 'Poppins', sans-serif; position: absolute; z-index: -100;">
-        <h2 style="color: #D4AF37; margin-bottom: 10px; font-family: 'Aref Ruqaa', serif; font-size: 1.8rem;">Darul Benat Admission</h2>
-        <hr style="border-color: #D4AF37; margin-bottom: 15px;">
-        <h3 style="margin-bottom: 5px; font-size: 1.2rem;">Name: <span id="p-name" style="color: #f3e5ab;"></span></h3>
-        <p style="margin-bottom: 5px;">Course/Class: <span id="p-class" style="color: #f3e5ab; font-weight: bold;"></span></p>
-        <p style="margin-bottom: 15px;">Phone: <span id="p-phone" style="color: #f3e5ab;"></span></p>
-        <p style="font-size: 0.8rem; color: #aaa; border-top: 1px dashed #D4AF37; padding-top: 10px;">Authorized Digital Receipt</p>
-    </div>
-
-    <div id="generated-poster-container" style="text-align: center; margin-top: 20px; display: none;">
-        <p style="color: #25D366; font-weight: bold; margin-bottom: 10px;">✅ Card Generated! Is photo ko download karke WhatsApp par bhejein.</p>
-        <img id="final-poster-img" src="" style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(212,175,55,0.5); margin-bottom: 15px;">
-        <br>
-        <a id="download-btn" href="" download="Admission-Receipt.png" class="gold-btn" style="background: #25D366; color: white;">Download & Share Card</a>
-    </div>
 
         // --- Admin UI Toggles ---
         function openAdminLogin() { document.getElementById('admin-modal').style.display = 'flex'; }
@@ -482,14 +483,46 @@
             document.getElementById('admin-pass').value = '';
         }
 
-        // Demo Alert for visual options
         function demoAlert() {
             alert("InshaAllah! Ye feature jald hi aane wale updates me Firebase ke sath connect kiya jayega. Abhi sirf 'Update Notice Board' live hai.");
         }
+
+        // --- AI VOICE READER ---
+        let isSpeaking = false;
+        let speech = new SpeechSynthesisUtterance();
+        speech.lang = 'hi-IN'; 
+        speech.rate = 0.9; 
+        speech.pitch = 1;
+        speech.text = "दारुल बेनत का क़याम इस ख़ास मक़सद से किया गया है ताकि हमारी बाचियाँ एक मुकम्मल इस्लामी, पर्दा-नशीं और महफ़ूज़ महफ़ूज़ में दीन की तालीम हासिल कर सकें। यहां बेहतरीन और ताजरबेकर आलिमत की निगरानी में हिफ़्ज़, नाज़िरा और दीनियत की तालीम दी जाती है। लड़कियों की तालीम – एक रोशन भविष्य की बुनियाद। लड़की सिर्फ एक बेटी नहीं होती, वह आने वाली नस्लों की निर्माता होती है। अगर एक लड़की पढ़ी-लिखी होगी तो पूरा परिवार शिक्षित होगा, और अगर परिवार शिक्षित होगा तो समाज मजबूत होगा। लड़कियों को तालीम देना कोई एहसान नहीं, बल्कि उनका बुनियादी हक़ है। दीन की तालीम उन्हें अच्छे अख़लाक, शराफ़त और अल्लाह से जुड़ाव सिखाती है। दुनियावी तालीम उन्हें समझदार, आत्मनिर्भर और कामयाब बनाती है। जब दीन और दुनिया दोनों की तालीम साथ मिलती हैं, तब एक बेहतरीन इंसान और मजबूत समाज तैयार होता है।";
+
+        function toggleSpeech() {
+            const icon = document.getElementById('speak-icon');
+            const btn = document.getElementById('speak-btn');
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                icon.className = 'fa-solid fa-volume-high';
+                btn.style.background = 'var(--gold)';
+                btn.style.color = '#000';
+                isSpeaking = false;
+            } else {
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(speech);
+                icon.className = 'fa-solid fa-circle-stop';
+                btn.style.background = '#ff3333';
+                btn.style.color = '#fff';
+                isSpeaking = true;
+            }
+        }
+
+        speech.onend = function() {
+            const icon = document.getElementById('speak-icon');
+            const btn = document.getElementById('speak-btn');
+            icon.className = 'fa-solid fa-volume-high';
+            btn.style.background = 'var(--gold)';
+            btn.style.color = '#000';
+            isSpeaking = false;
+        };
     </script>
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -507,7 +540,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // 1. READ DATA (Real-Time Marquee Update)
         const noticeRef = ref(db, 'madarsa_controls/notice');
         onValue(noticeRef, (snapshot) => {
             const data = snapshot.val();
@@ -518,74 +550,17 @@
             }
         });
 
-        // 2. WRITE DATA (Admin Panel Push Button) - THIS IS FIXED NOW!
         document.getElementById('update-madarsa-btn').addEventListener('click', () => {
             const newNoticeText = document.getElementById('madarsa-notice-input').value;
-            
             if(newNoticeText.trim() !== "") {
                 set(ref(db, 'madarsa_controls/notice'), newNoticeText)
                 .then(() => {
                     alert("✅ MashaAllah! Notice successfully update ho gaya hai aur website par live chal raha hai.");
-                    document.getElementById('madarsa-notice-input').value = ""; // Input box clear
+                    document.getElementById('madarsa-notice-input').value = "";
                 })
-                .catch((error) => {
-                    alert("❌ ERROR: Data save nahi hua. Connection check karein.\n" + error);
-                });
-            } else {
-                alert("Bhai, khali notice thodi bhejenge! Pehle kuch likho.");
-            }
+                .catch((error) => { alert("❌ ERROR: Data save nahi hua.\n" + error); });
+            } else { alert("Bhai, khali notice thodi bhejenge! Pehle kuch likho."); }
         });
-    </script>
-    <script>
-        let isSpeaking = false;
-        let speech = new SpeechSynthesisUtterance();
-        
-        // AI ki Setting: Hindi Bhasha aur thodi aaram se bolne ki speed
-        speech.lang = 'hi-IN'; 
-        speech.rate = 0.9; 
-        speech.pitch = 1;
-
-        // Jo text AI ko padhna hai
-        speech.text = "दारुल बेनत का क़याम इस ख़ास मक़सद से किया गया है ताकि हमारी बाचियाँ एक मुकम्मल इस्लामी, पर्दा-नशीं और महफ़ूज़ महफ़ूज़ में दीन की तालीम हासिल कर सकें। यहां बेहतरीन और ताजरबेकर आलिमत की निगरानी में हिफ़्ज़, नाज़िरा और दीनियत की तालीम दी जाती है। लड़कियों की तालीम – एक रोशन भविष्य की बुनियाद। लड़की सिर्फ एक बेटी नहीं होती, वह आने वाली नस्लों की निर्माता होती है। अगर एक लड़की पढ़ी-लिखी होगी तो पूरा परिवार शिक्षित होगा, और अगर परिवार शिक्षित होगा तो समाज मजबूत होगा। लड़कियों को तालीम देना कोई एहसान नहीं, बल्कि उनका बुनियादी हक़ है। दीन की तालीम उन्हें अच्छे अख़लाक, शराफ़त और अल्लाह से जुड़ाव सिखाती है। दुनियावी तालीम उन्हें समझदार, आत्मनिर्भर और कामयाब बनाती है। जब दीन और दुनिया दोनों की तालीम साथ मिलती हैं, तब एक बेहतरीन इंसान और एक मजबूत समाज तैयार होता है। क़ुरआन की पहली वही 'इक़रा' यानी 'पढ़ो' से शुरू होती है, जो इस बात की दलील है कि इस्लाम में तालीम की कितनी अहमियत है। और मोहम्मद सल्लल्लाहु अलैहि वसल्लम ने फरमाया कि इल्म हासिल करना हर मुसलमान पर फ़र्ज़ है — चाहे वह मर्द हो या औरत। आज जरूरत है कि हम अपनी बेटियों को ऐसी तालीम दें जो उन्हें दीनदार भी बनाए और दुनियावी तौर पर मजबूत भी। एक लड़की की तालीम दरअसल पूरी कौम की तरक्की है। आइए, मिलकर ऐसी जगह बनाएं जहाँ हमारी बेटियाँ दीन और दुनिया दोनों की रौशनी हासिल कर सकें — ताकि उनका भविष्य भी रोशन हो और समाज भी।";
-
-        function toggleSpeech() {
-            const icon = document.getElementById('speak-icon');
-            const btn = document.getElementById('speak-btn');
-            
-            // Agar pehle se bol raha hai, toh band kar do
-            if (isSpeaking) {
-                window.speechSynthesis.cancel();
-                icon.className = 'fa-solid fa-volume-high';
-                btn.style.background = 'var(--gold)';
-                btn.style.color = '#000';
-                isSpeaking = false;
-            } 
-            // Agar chup hai, toh bolna shuru karo
-            else {
-                window.speechSynthesis.cancel(); // Reset
-                window.speechSynthesis.speak(speech);
-                icon.className = 'fa-solid fa-circle-stop'; // Stop icon lag jayega
-                btn.style.background = '#ff3333'; // Button Laal ho jayega
-                btn.style.color = '#fff';
-                isSpeaking = true;
-            }
-        }
-
-        // Jab AI pura paragraph padh le, toh button wapas normal (Gold) ho jaye
-        speech.onend = function() {
-            const icon = document.getElementById('speak-icon');
-            const btn = document.getElementById('speak-btn');
-            icon.className = 'fa-solid fa-volume-high';
-            btn.style.background = 'var(--gold)';
-            btn.style.color = '#000';
-            isSpeaking = false;
-        };
     </script>
 </body>
 </html>
-
-
-
-
-
-
