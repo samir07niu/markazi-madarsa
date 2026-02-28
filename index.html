@@ -479,10 +479,12 @@
             </div>
 
             <div class="dash-card">
-                <i class="fa-solid fa-chart-line"></i>
-                <h3>Website Traffic</h3>
-                <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Dekhein website par kitne log aaye.</p>
-                <button class="gold-btn" onclick="demoAlert()">View Analytics</button>
+                <i class="fa-solid fa-images"></i>
+                <h3>Gallery Photos</h3>
+                <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Bachiyon ke naye program ki photos dalein.</p>
+                <input type="file" id="gallery-upload-input" accept="image/*" class="admin-input" style="padding: 10px; background: transparent; border: none;">
+                <button class="gold-btn" onclick="uploadLivePhoto()">Upload to Website</button>
+                <p id="upload-status" style="color: #00ffcc; font-size: 0.85rem; display: none; margin-top: 10px; font-weight: bold;"></p>
             </div>
         </div>
     </div>
@@ -703,14 +705,14 @@
             apiKey: "AIzaSyBoKeZ6H5bZSa1o9gOyqrlrdVc--zzAZaY",
             authDomain: "villagewalla-8c88d.firebaseapp.com",
             projectId: "villagewalla-8c88d",
-            storageBucket: "villagewalla-8c88d.firebasestorage.app", // Jadoo yahan se hoga
+            storageBucket: "villagewalla-8c88d.firebasestorage.app",
             messagingSenderId: "347603366205",
             appId: "1:347603366205:web:85ce2091aa26f7ecdc1554"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-        const storage = getStorage(app); // Cloud Storage Initialize
+        const storage = getStorage(app); 
 
         // --- 1. LIVE NOTICE BOARD ENGINE ---
         onValue(ref(db, 'madarsa_controls/notice'), (snapshot) => {
@@ -718,7 +720,8 @@
             if(data) document.getElementById('madarsa-live-notice').innerText = "☪️ " + data + " ☪️";
         });
 
-        document.getElementById('update-madarsa-btn').addEventListener('click', () => {
+        // Notice update karne ka function (Global)
+        window.updateNoticeBoard = function() {
             const newNoticeText = document.getElementById('madarsa-notice-input').value;
             if(newNoticeText.trim() !== "") {
                 set(ref(db, 'madarsa_controls/notice'), newNoticeText).then(() => {
@@ -726,10 +729,13 @@
                     document.getElementById('madarsa-notice-input').value = "";
                 });
             } else alert("Khali notice mat bhejo bhai!");
-        });
+        };
 
-        // --- 2. LIVE GALLERY UPLOAD ENGINE (CYBER LEVEL) ---
-        document.getElementById('upload-gallery-btn').addEventListener('click', () => {
+        // Button ke sath notice jodne ka code
+        document.getElementById('update-madarsa-btn').onclick = window.updateNoticeBoard;
+
+        // --- 2. LIVE GALLERY UPLOAD ENGINE (GLOBAL) ---
+        window.uploadLivePhoto = function() {
             const fileInput = document.getElementById('gallery-upload-input');
             const file = fileInput.files[0];
             const statusText = document.getElementById('upload-status');
@@ -739,7 +745,7 @@
             statusText.style.display = "block";
             statusText.innerText = "Encrypting & Uploading... ⏳";
 
-            // Photo ka unique naam banaya
+            // Photo ka unique naam
             const uniqueName = Date.now() + '-' + file.name;
             const imageRef = storageRef(storage, 'madarsa_gallery/' + uniqueName);
             const uploadTask = uploadBytesResumable(imageRef, file);
@@ -754,43 +760,44 @@
                     statusText.style.display = "none";
                 },
                 () => {
-                    // Upload hone ke baad URL nikal kar Database me save karna
+                    // Upload hone ke baad database me save karna
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         push(ref(db, 'madarsa_gallery_data'), {
                             imageUrl: downloadURL,
                             timestamp: Date.now()
                         }).then(() => {
                             statusText.innerText = "✅ Photo Live Ho Gayi!";
-                            fileInput.value = ""; // Input khali karna
+                            fileInput.value = ""; 
                             setTimeout(() => { statusText.style.display = "none"; }, 4000);
                         });
                     });
                 }
             );
-        });
+        };
 
         // --- 3. FETCH & DISPLAY LIVE GALLERY ---
         const galleryGrid = document.getElementById('live-gallery-grid');
         onValue(ref(db, 'madarsa_gallery_data'), (snapshot) => {
             const data = snapshot.val();
-            galleryGrid.innerHTML = ""; // Purani loading hatao
             
-            if(data) {
-                // Latest photo pehle dikhane ke liye reverse kiya
-                const photos = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
+            if(galleryGrid) {
+                galleryGrid.innerHTML = ""; // Purani loading hatao
                 
-                photos.forEach(photo => {
-                    galleryGrid.innerHTML += `
-                        <div class="gallery-item" style="animation: popUp 0.6s ease-out;">
-                            <img src="${photo.imageUrl}" alt="Madarsa Live Photo" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                    `;
-                });
-            } else {
-                galleryGrid.innerHTML = `<p style="color: #aaa; text-align: center; width: 100%;">Abhi koi photo upload nahi hui hai.</p>`;
+                if(data) {
+                    const photos = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
+                    
+                    photos.forEach(photo => {
+                        galleryGrid.innerHTML += `
+                            <div class="gallery-item" style="animation: popUp 0.6s ease-out;">
+                                <img src="${photo.imageUrl}" alt="Madarsa Live Photo" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        `;
+                    });
+                } else {
+                    galleryGrid.innerHTML = `<p style="color: #D4AF37; text-align: center; width: 100%;">Abhi koi photo upload nahi hui hai.</p>`;
+                }
             }
         });
-
     </script>
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -900,6 +907,7 @@
     </script>
 </body>
 </html>
+
 
 
 
