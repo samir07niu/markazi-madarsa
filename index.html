@@ -427,16 +427,17 @@
             <button class="gold-btn" style="width: auto; padding: 10px 20px; background: #ff3333; color: white; border: none;" onclick="closeDashboard()">Secure Logout</button>
         </div>
         
-        <div class="dash-grid">
+       <div class="dash-grid">
+            
             <div class="dash-card">
                 <i class="fa-solid fa-images"></i>
                 <h3>Gallery Photos</h3>
                 <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Bachiyon ke naye program ki photos dalein.</p>
                 <input type="file" id="gallery-upload-input" accept="image/*" class="admin-input" style="padding: 10px; background: transparent; border: none;">
-                <button class="gold-btn" id="upload-gallery-btn">Upload to Website</button>
+                <button class="gold-btn" onclick="uploadLivePhoto()">Upload to Website</button>
                 <p id="upload-status" style="color: #00ffcc; font-size: 0.85rem; display: none; margin-top: 10px; font-weight: bold;"></p>
             </div>
-            
+
             <div class="dash-card">
                 <i class="fa-brands fa-youtube"></i>
                 <h3>Update Video</h3>
@@ -446,29 +447,21 @@
             </div>
 
             <div class="dash-card">
-                <i class="fa-solid fa-images"></i>
-                <h3>Gallery Photos</h3>
-                <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Bachiyon ke naye program ki photos dalein.</p>
-                <input type="file" class="admin-input" style="padding: 10px; background: transparent; border: none;">
-                <button class="gold-btn" onclick="demoAlert()">Upload to Website</button>
-            </div>
-
-            <div class="dash-card">
                 <i class="fa-solid fa-user-graduate"></i>
                 <h3>View Admissions</h3>
                 <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Naye students ke data check karein.</p>
                 <button class="gold-btn" id="view-admissions-btn" onclick="window.viewAdmissionsList()">View Applications (0)</button>
             </div>
-            
+
             <div class="dash-card">
                 <i class="fa-solid fa-bed"></i>
                 <h3>Hostel Status</h3>
                 <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Hostel me beds ki jankari update karein.</p>
-                <select class="admin-input">
+                <select class="admin-input" style="background: rgba(255,255,255,0.1); color: white; padding: 10px; border: none;">
                     <option>🟢 Beds Available</option>
-                    <option>🔴 Hostel is Full</option>
+                    <option>🔴 Hostel Full</option>
                 </select>
-                <button class="gold-btn" onclick="demoAlert()">Change Status</button>
+                <button class="gold-btn" onclick="demoAlert()" style="margin-top: 10px;">Change Status</button>
             </div>
 
             <div class="dash-card">
@@ -478,16 +471,8 @@
                 <button class="gold-btn" onclick="demoAlert()">Manage Bank Details</button>
             </div>
 
-            <div class="dash-card">
-                <i class="fa-solid fa-images"></i>
-                <h3>Gallery Photos</h3>
-                <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Bachiyon ke naye program ki photos dalein.</p>
-                <input type="file" id="gallery-upload-input" accept="image/*" class="admin-input" style="padding: 10px; background: transparent; border: none;">
-                <button class="gold-btn" onclick="uploadLivePhoto()">Upload to Website</button>
-                <p id="upload-status" style="color: #00ffcc; font-size: 0.85rem; display: none; margin-top: 10px; font-weight: bold;"></p>
-            </div>
         </div>
-    </div>
+        
     <div id="dev-room" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 99999; justify-content: center; align-items: center; backdrop-filter: blur(10px); overflow-y: auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #050505, #0a1911); width: 100%; max-width: 650px; padding: 40px 30px; border-radius: 20px; border: 2px solid #00ffcc; box-shadow: 0 0 40px rgba(0, 255, 204, 0.3); text-align: center; position: relative; animation: popUp 0.5s ease-out;">
             
@@ -1040,6 +1025,7 @@
     </script>
 </body>
 </html>
+
 
 
 
