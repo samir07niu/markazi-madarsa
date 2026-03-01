@@ -455,11 +455,11 @@
 
             <div class="dash-card">
                 <i class="fa-solid fa-user-graduate"></i>
-                <h3>Admissions</h3>
-                <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Check new student admission inquiries.</p>
-                <button class="gold-btn" onclick="demoAlert()">View Applications (0)</button>
+                <h3>View Admissions</h3>
+                <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Naye students ke data check karein.</p>
+                <button class="gold-btn" id="view-admissions-btn" onclick="window.viewAdmissionsList()">View Applications (0)</button>
             </div>
-
+            
             <div class="dash-card">
                 <i class="fa-solid fa-bed"></i>
                 <h3>Hostel Status</h3>
@@ -610,6 +610,20 @@
                     document.getElementById('final-poster-img').src = imgData;
                     document.getElementById('download-btn').href = imgData;
                     document.getElementById('generated-poster-container').style.display = "block";
+
+                    // --- 🔥 FIREBASE ME DATA BHEJNA 🔥 ---
+                    let studentData = {
+                        name: document.getElementById('s-name').value,
+                        class: document.getElementById('s-class').value,
+                        phone: document.getElementById('s-phone').value,
+                        age: document.getElementById('s-age').value,
+                        village: document.getElementById('s-village').value,
+                        timestamp: Date.now()
+                    };
+                    if(window.saveAdmissionData) {
+                        window.saveAdmissionData(studentData);
+                    }
+                    // ------------------------------------
                     
                     // Form clear karna
                     document.getElementById('s-name').value = "";
@@ -852,6 +866,40 @@
                 }
             }
         });
+        
+        // --- 4. LIVE ADMISSION DATA ENGINE ---
+        
+        // Data save karne ka global function
+        window.saveAdmissionData = function(studentData) {
+            push(ref(db, 'madarsa_admissions'), studentData)
+                .then(() => console.log("✅ Student Data Secured in Firebase!"))
+                .catch(err => console.error("❌ Database Error:", err));
+        };
+
+        // Admin panel me Count update karna aur Data lana
+        onValue(ref(db, 'madarsa_admissions'), (snapshot) => {
+            const data = snapshot.val();
+            let count = data ? Object.keys(data).length : 0;
+            
+            let btn = document.getElementById('view-admissions-btn');
+            if(btn) btn.innerText = `View Applications (${count})`;
+            
+            // Admin ke dekhne ke liye data save kar lena
+            window.allAdmissions = data;
+        });
+
+        // Jab Admin "View Applications" pe click kare
+        window.viewAdmissionsList = function() {
+            if(!window.allAdmissions) {
+                alert("Abhi tak koi naya admission form nahi aaya hai.");
+                return;
+            }
+            let list = "🎓 TOTAL ADMISSIONS: \n\n";
+            Object.values(window.allAdmissions).forEach(s => {
+                list += `👤 Naam: ${s.name}\n📚 Class: ${s.class}\n📞 Phone: ${s.phone}\n📍 Gaon: ${s.village}\n------------------\n`;
+            });
+            alert(list); // Ek pop-up me saare bacchon ki list dikhegi
+        };
     </script>
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -987,6 +1035,7 @@
     </script>
 </body>
 </html>
+
 
 
 
