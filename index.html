@@ -620,8 +620,12 @@
                         village: document.getElementById('s-village').value,
                         timestamp: Date.now()
                     };
+                    
                     if(window.saveAdmissionData) {
                         window.saveAdmissionData(studentData);
+                        alert("✅ SUCCESS: Data Firebase Server par bhej diya gaya hai!");
+                    } else {
+                        alert("❌ ERROR: Firebase Engine properly load nahi hua.");
                     }
                     // ------------------------------------
                     
@@ -772,12 +776,13 @@
         const firebaseConfig = {
             apiKey: "AIzaSyBoKeZ6H5bZSa1o9gOyqrlrdVc--zzAZaY",
             authDomain: "villagewalla-8c88d.firebaseapp.com",
+            databaseURL: "https://villagewalla-8c88d-default-rtdb.firebaseio.com", // <-- 🔥 YE NAYI LINE ADD KARNI HAI 🔥
             projectId: "villagewalla-8c88d",
             storageBucket: "villagewalla-8c88d.firebasestorage.app",
             messagingSenderId: "347603366205",
             appId: "1:347603366205:web:85ce2091aa26f7ecdc1554"
         };
-
+        
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const storage = getStorage(app); 
@@ -1035,6 +1040,7 @@
     </script>
 </body>
 </html>
+
 
 
 
