@@ -761,13 +761,13 @@
         const firebaseConfig = {
             apiKey: "AIzaSyBoKeZ6H5bZSa1o9gOyqrlrdVc--zzAZaY",
             authDomain: "villagewalla-8c88d.firebaseapp.com",
-            databaseURL: "https://villagewalla-8c88d-default-rtdb.firebaseio.com", // <-- 🔥 YE NAYI LINE ADD KARNI HAI 🔥
+            databaseURL: "https://villagewalla-8c88d-default-rtdb.firebaseio.com",
             projectId: "villagewalla-8c88d",
             storageBucket: "villagewalla-8c88d.firebasestorage.app",
             messagingSenderId: "347603366205",
             appId: "1:347603366205:web:85ce2091aa26f7ecdc1554"
         };
-        
+
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const storage = getStorage(app); 
@@ -775,10 +775,12 @@
         // --- 1. LIVE NOTICE BOARD ENGINE ---
         onValue(ref(db, 'madarsa_controls/notice'), (snapshot) => {
             const data = snapshot.val();
-            if(data) document.getElementById('madarsa-live-notice').innerText = "☪️ " + data + " ☪️";
+            if(data) {
+                let noticeEl = document.getElementById('madarsa-live-notice');
+                if(noticeEl) noticeEl.innerText = "☪️ " + data + " ☪️";
+            }
         });
 
-        // Notice update karne ka function (Global)
         window.updateNoticeBoard = function() {
             const newNoticeText = document.getElementById('madarsa-notice-input').value;
             if(newNoticeText.trim() !== "") {
@@ -789,21 +791,23 @@
             } else alert("Khali notice mat bhejo bhai!");
         };
 
-        // Button ke sath notice jodne ka code
-        document.getElementById('update-madarsa-btn').onclick = window.updateNoticeBoard;
+        let updateBtn = document.getElementById('update-madarsa-btn');
+        if(updateBtn) updateBtn.onclick = window.updateNoticeBoard;
 
-        // --- 2. LIVE GALLERY UPLOAD ENGINE (GLOBAL) ---
+        // --- 2. LIVE GALLERY UPLOAD ENGINE ---
         window.uploadLivePhoto = function() {
             const fileInput = document.getElementById('gallery-upload-input');
-            const file = fileInput.files[0];
             const statusText = document.getElementById('upload-status');
+            
+            if (!fileInput || !fileInput.files[0]) { 
+                alert("⚠️ Pehle koi photo select karein!"); 
+                return; 
+            }
 
-            if (!file) { alert("⚠️ Pehle koi photo select karein!"); return; }
-
+            const file = fileInput.files[0];
             statusText.style.display = "block";
             statusText.innerText = "Encrypting & Uploading... ⏳";
 
-            // Photo ka unique naam
             const uniqueName = Date.now() + '-' + file.name;
             const imageRef = storageRef(storage, 'madarsa_gallery/' + uniqueName);
             const uploadTask = uploadBytesResumable(imageRef, file);
@@ -818,7 +822,6 @@
                     statusText.style.display = "none";
                 },
                 () => {
-                    // Upload hone ke baad database me save karna
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         push(ref(db, 'madarsa_gallery_data'), {
                             imageUrl: downloadURL,
@@ -837,13 +840,10 @@
         const galleryGrid = document.getElementById('live-gallery-grid');
         onValue(ref(db, 'madarsa_gallery_data'), (snapshot) => {
             const data = snapshot.val();
-            
             if(galleryGrid) {
-                galleryGrid.innerHTML = ""; // Purani loading hatao
-                
+                galleryGrid.innerHTML = ""; 
                 if(data) {
                     const photos = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
-                    
                     photos.forEach(photo => {
                         galleryGrid.innerHTML += `
                             <div class="gallery-item" style="animation: popUp 0.6s ease-out;">
@@ -856,29 +856,22 @@
                 }
             }
         });
-        
+
         // --- 4. LIVE ADMISSION DATA ENGINE ---
-        
-        // Data save karne ka global function
         window.saveAdmissionData = function(studentData) {
             push(ref(db, 'madarsa_admissions'), studentData)
                 .then(() => console.log("✅ Student Data Secured in Firebase!"))
                 .catch(err => console.error("❌ Database Error:", err));
         };
 
-        // Admin panel me Count update karna aur Data lana
         onValue(ref(db, 'madarsa_admissions'), (snapshot) => {
             const data = snapshot.val();
             let count = data ? Object.keys(data).length : 0;
-            
             let btn = document.getElementById('view-admissions-btn');
             if(btn) btn.innerText = `View Applications (${count})`;
-            
-            // Admin ke dekhne ke liye data save kar lena
             window.allAdmissions = data;
         });
 
-        // Jab Admin "View Applications" pe click kare
         window.viewAdmissionsList = function() {
             if(!window.allAdmissions) {
                 alert("Abhi tak koi naya admission form nahi aaya hai.");
@@ -888,9 +881,11 @@
             Object.values(window.allAdmissions).forEach(s => {
                 list += `👤 Naam: ${s.name}\n📚 Class: ${s.class}\n📞 Phone: ${s.phone}\n📍 Gaon: ${s.village}\n------------------\n`;
             });
-            alert(list); // Ek pop-up me saare bacchon ki list dikhegi
+            alert(list);
         };
+
     </script>
+        
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
@@ -1025,6 +1020,7 @@
     </script>
 </body>
 </html>
+
 
 
 
