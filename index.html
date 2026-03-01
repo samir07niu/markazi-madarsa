@@ -959,8 +959,35 @@
             addMessage(reply, 'bot-msg');
         }
     </script>
+    <script>
+        // 1. HACKER CONSOLE SIGNATURE (Easter Egg)
+        console.log("%c STOP RIGHT THERE! 🛑", "color: red; font-size: 40px; font-weight: bold; text-shadow: 2px 2px 0 #000;");
+        console.log("%c This system is secured by Sameer (Cyber Security Researcher & Lead Architect at Project Valkyrie).", "color: #00ffcc; font-size: 16px; font-family: monospace;");
+        console.log("%c Any unauthorized malicious payload, scraping, or brute-force attempt will be traced back to your IP. You have been warned.", "color: #D4AF37; font-size: 14px; font-family: monospace;");
+
+        // 2. ANTI-INSPECT & RIGHT CLICK SHIELD (Basic Protection)
+        // Right Click Band Karna
+        document.addEventListener('contextmenu', event => event.preventDefault()); 
+        
+        // Keyboard Shortcuts Band Karna (F12, Ctrl+Shift+I, Ctrl+U)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) { // F12 band
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I band
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J band
+                return false;
+            }
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U (View Source) band
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>
+
 
 
 
